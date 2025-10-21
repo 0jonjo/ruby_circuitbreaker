@@ -4,7 +4,6 @@ GEM
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
     base64 (0.3.0)
-    coderay (1.1.3)
     connection_pool (2.5.4)
     dotenv (3.1.8)
     ethon (0.15.0)
@@ -57,15 +56,11 @@ GEM
       base64
     logger (1.7.0)
     marcel (1.1.0)
-    method_source (1.1.0)
     multi_json (1.17.0)
     multipart-post (2.4.1)
     net-http (0.6.0)
       uri
     os (1.1.4)
-    pry (0.15.2)
-      coderay (~> 1.1)
-      method_source (~> 1.0)
     public_suffix (6.0.2)
     redis (5.4.1)
       redis-client (>= 0.22.0)
@@ -114,7 +109,6 @@ PLATFORMS
 DEPENDENCIES
   dotenv (~> 3.0)
   gemini-ai (~> 4.0)
-  pry
   ruby-openai (~> 7.0)
   ruby_llm
   stoplight (~> 4.0)

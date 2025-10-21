@@ -16,7 +16,3 @@ gem 'ruby_llm'
 
 # For loading environment variables
 gem 'dotenv', '~> 3.0'
-
-group :development, :test do
-  gem 'pry'
-end
