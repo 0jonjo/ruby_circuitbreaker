@@ -1,7 +1,5 @@
 # CIRCUIT BREAKER WITH RUBYLLM + STOPLIGHT
 
-Resilient AI chat with circuit breaker + failover using Stoplight (v5) and RubyLLM. No Redis required. Works with OpenAI and Gemini via a simple, minimal setup.
-
 ## Quick start
 
 1) Install deps
@@ -25,13 +23,7 @@ cp .env.example .env
 ruby -e "require_relative 'ruby_llm_resilient_client'; require 'ruby_llm'; chat = RubyLLM.chat; r = ask_with_failover(chat, 'Say hello in five words.'); puts 'Model: ' + r.model_id; puts r.content"
 ```
 
-4) Full demo (two requests, preserves context)
-
-```bash
-ruby ruby_llm_resilient_client.rb
-```
-
-5) Interactive test with IRB
+4) Interactive test with IRB
 
 ```bash
 irb -r ./ruby_llm_resilient_client.rb -r ruby_llm
@@ -48,14 +40,11 @@ puts r.content
 # Follow-up (preserves context)
 r2 = ask_with_failover(chat, "Give me an example use case.")
 puts r2.content
-
-# Check circuit breaker status
-display_all_circuits
 ```
 
 Exit IRB with `exit` or `Ctrl+D`.
 
-## What’s inside
+## What's inside
 
 - `ruby_llm_resilient_client.rb` — failover logic using RubyLLM + Stoplight
 - `stoplight_config.rb` — Stoplight v5 config (memory-only datastore)
