@@ -31,6 +31,30 @@ ruby -e "require_relative 'ruby_llm_resilient_client'; require 'ruby_llm'; chat 
 ruby ruby_llm_resilient_client.rb
 ```
 
+5) Interactive test with IRB
+
+```bash
+irb -r ./ruby_llm_resilient_client.rb -r ruby_llm
+```
+
+Then inside IRB:
+
+```ruby
+chat = RubyLLM.chat
+r = ask_with_failover(chat, "What is the Circuit Breaker pattern in one sentence?")
+puts r.model_id
+puts r.content
+
+# Follow-up (preserves context)
+r2 = ask_with_failover(chat, "Give me an example use case.")
+puts r2.content
+
+# Check circuit breaker status
+display_all_circuits
+```
+
+Exit IRB with `exit` or `Ctrl+D`.
+
 ## What’s inside
 
 - `ruby_llm_resilient_client.rb` — failover logic using RubyLLM + Stoplight
