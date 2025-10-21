@@ -10,13 +10,6 @@ require_relative 'ruby_llm_config'
 # Using widely-available model IDs to avoid "Unknown model" warnings.
 MODEL_PRIORITY = ['gpt-4o', 'gemini-2.5-flash', 'gpt-4o-mini']
 
-# Mock logger for standalone testing
-module Rails
-  def self.logger
-    @logger ||= Logger.new(STDOUT)
-  end
-end
-
 # The main failover method using RubyLLM chat object
 # Contract:
 # - Input: chat_object (RubyLLM::Chat), new_prompt (String)
@@ -41,16 +34,16 @@ def ask_with_failover(chat_object, new_prompt)
       return light.run do
         chat_object.with_model(model_name)
         response = chat_object.ask(new_prompt)
-        Rails.logger.info "[AI SUCCESS] ✅ #{model_name} responded"
+        puts "[AI SUCCESS] ✅ #{model_name} responded"
         response
       end
 
     rescue Stoplight::Error::RedLight => e
-      Rails.logger.warn "[AI FAILOVER] 🔴 Circuit open for #{model_name}"
+      puts "[AI FAILOVER] 🔴 Circuit open for #{model_name}"
       last_error = e
       next
     rescue *AIProviderSettings::TRACKING_ERRORS => e
-      Rails.logger.warn "[AI FAILOVER] ❌ #{model_name} failed: #{e.message}"
+      puts "[AI FAILOVER] ❌ #{model_name} failed: #{e.message}"
       last_error = e
       next
     end
