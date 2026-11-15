@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'stoplight', '~> 4.0'
+gem 'stoplight', '~> 5.0'
 gem 'ruby_llm'
 
 # For loading environment variables
